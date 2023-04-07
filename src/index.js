@@ -40,10 +40,7 @@ function SearchFormHandler(event) {
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
     })
-    .catch(error => console.log(error))
-    .finally(() => {
-      searchForm.reset();
-    });
+    .catch(error => console.log(error));
 };
 
 function renderGallery(imageItems) { 
