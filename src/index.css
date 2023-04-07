@@ -48,3 +48,48 @@
 .hidden {
   display: none;
 }
+
+.gallery {
+  display: grid;
+  max-width: 1600px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, auto));
+  grid-auto-rows: 320px;
+  grid-gap: 16px;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+  margin: 86px auto 24px;
+  text-decoration: none;
+}
+
+.gallery_link {
+  text-decoration: none;
+}
+
+.photo-card {
+  max-width: 390px;
+  position: relative;
+  text-decoration: none;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-item_img {
+  height: 240px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  gap: 12px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.info-item {
+  margin-left: 12px;
+  text-decoration: none;
+  text-align: center;
+  color: #212121;
+}

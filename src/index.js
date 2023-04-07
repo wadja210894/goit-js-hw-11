@@ -8,15 +8,13 @@ const searchForm = document.getElementById('search-form');
 const picturesContainer = document.querySelector('.gallery');
 const buttonLoadMore = document.querySelector('.load-more');
 
-console.log('testForScript');
-
 let query = '';
 let page = 1;
 const perPage = 40;
 
-searchForm.addEventListener('submit', SearchFormHandler);
+searchForm.addEventListener('submit', searchFormHandler);
 
-function SearchFormHandler(event) { 
+function searchFormHandler(event) { 
     event.preventDefault();
     page = 1;
     query = event.currentTarget.elements.searchQuery.value.trim();
@@ -59,12 +57,12 @@ const createGalleryMarkup  = imageItems
             return `
         <a class="gallery_link" href="${largeImageURL}">
           <div class="photo-card" id="${id}">
-            <img class="gallery-item__img" src="${webformatURL}" alt="${tags}" loading="lazy" />
+            <img class="gallery-item_img" src="${webformatURL}" alt="${tags}" loading="lazy" />
             <div class="info">
-              <p class="info-item"><b>Likes</b>${likes}</p>
-              <p class="info-item"><b>Views</b>${views}</p>
-              <p class="info-item"><b>Comments</b>${comments}</p>
-              <p class="info-item"><b>Downloads</b>${downloads}</p>
+              <p class="info-item"><b>Likes</b><br/>${likes}</p>
+              <p class="info-item"><b>Views</b><br/>${views}</p>
+              <p class="info-item"><b>Comments</b><br/>${comments}</p>
+              <p class="info-item"><b>Downloads</b><br/>${downloads}</p>
             </div>
           </div>
         </a>
@@ -73,14 +71,5 @@ const createGalleryMarkup  = imageItems
         .join('');
     
    picturesContainer.insertAdjacentHTML('beforeend', createGalleryMarkup);
-    
-    const { height: cardHeight } = document
-    .querySelector('.gallery')
-    .firstElementChild.getBoundingClientRect();
-
-  window.scrollBy({
-    top: cardHeight * 2,
-    behavior: 'smooth',
-  });
 }
     
