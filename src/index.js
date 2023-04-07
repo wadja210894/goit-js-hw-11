@@ -8,6 +8,8 @@ const searchForm = document.getElementById('search-form');
 const picturesContainer = document.querySelector('.gallery');
 const buttonLoadMore = document.querySelector('.load-more');
 
+console.log('testForScript');
+
 let page = 1;
 const perPage = 40;
 
