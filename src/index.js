@@ -10,6 +10,7 @@ const buttonLoadMore = document.querySelector('.load-more');
 
 console.log('testForScript');
 
+let query = '';
 let page = 1;
 const perPage = 40;
 
