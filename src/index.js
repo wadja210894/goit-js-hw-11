@@ -13,19 +13,24 @@ let page = 1;
 const perPage = 40;
 
 searchForm.addEventListener('submit', searchFormHandler);
+buttonLoadMore.addEventListener('click', loadMoreHandler);
+
+buttonLoadMore.classList.add('hidden');
 
 function searchFormHandler(event) { 
-    event.preventDefault();
-    page = 1;
-    query = event.currentTarget.elements.searchQuery.value.trim();
-    picturesContainer.innerHTML = '';
+  event.preventDefault();
+  page = 1;
+  query = event.currentTarget.elements.searchQuery.value.trim();
+  picturesContainer.innerHTML = '';
+  buttonLoadMore.classList.remove('hidden')
     
-    if (query === '') {
+  if (query === '') {
+      buttonLoadMore.classList.add('hidden');
         Notiflix.Notify.failure(
             'The search string cannot be empty. Please specify your search query.',
         );
         return;
-    }
+  }
     fetchImages(query, page, perPage)
     .then(data => {
       if (data.totalHits === 0) {
@@ -38,7 +43,26 @@ function searchFormHandler(event) {
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log(error));  
+};
+
+function loadMoreHandler(event) {
+  event.preventDefault();
+  page += 1;  
+
+  fetchImages(query, page, perPage)
+    .then(data => {
+      if (page > (data.totalHits / perPage) + 1) {
+        buttonLoadMore.classList.add('hidden');
+        Notiflix.Notify.failure(
+          `We're sorry, but you've reached the end of search results.`,
+        );
+      } else {
+          renderGallery(data.hits);
+          simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+      }
+    })
+    .catch(error => console.log(error));  
 };
 
 function renderGallery(imageItems) { 
@@ -71,5 +95,4 @@ const createGalleryMarkup  = imageItems
         .join('');
     
    picturesContainer.insertAdjacentHTML('beforeend', createGalleryMarkup);
-}
-    
+};
