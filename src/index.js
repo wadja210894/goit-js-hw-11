@@ -39,7 +39,7 @@ function searchFormHandler(event) {
         );
       } else {
           renderGallery(data.hits);
-          simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+          SimpleLightBox = new SimpleLightbox('.gallery a').refresh();
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
     })
@@ -59,7 +59,7 @@ function loadMoreHandler(event) {
         );
       } else {
           renderGallery(data.hits);
-          simpleLightBox = new SimpleLightbox('.gallery a').refresh();
+          SimpleLightBox = new SimpleLightbox('.gallery a').refresh();
       }
     })
     .catch(error => console.log(error));  
